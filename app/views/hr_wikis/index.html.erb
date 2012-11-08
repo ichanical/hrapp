@@ -1,0 +1,38 @@
+<%- model_class = HrWiki -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:term) %></th>
+      <th><%= model_class.human_attribute_name(:definition) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hr_wikis.each do |hr_wiki| %>
+      <tr>
+        <td><%= link_to hr_wiki.id, hr_wiki_path(hr_wiki) %></td>
+        <td><%= hr_wiki.term %></td>
+        <td><%= hr_wiki.definition %></td>
+        <td><%=l hr_wiki.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_hr_wiki_path(hr_wiki), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      hr_wiki_path(hr_wiki),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_hr_wiki_path,
+            :class => 'btn btn-primary' %>

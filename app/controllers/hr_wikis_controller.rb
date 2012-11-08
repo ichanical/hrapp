@@ -1,0 +1,2 @@
+class HrWikisController < ApplicationController
+end
