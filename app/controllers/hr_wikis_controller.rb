@@ -24,13 +24,11 @@ class HrWikisController < ApplicationController
   
   def edit
     @hr_wiki=HrWiki.find params[:id]
-    @hr_wikis = HrWiki.all
   end
   
   def update
     @hr_wiki=HrWiki.find params[:id]
     @hr_wiki.update_attributes(params[:hr_wiki])
-    @hr_wikis = HrWiki.all
     if @hr_wiki.save
       redirect_to new_hr_wiki_path,:notice=>"Data saving successful"
     else 
@@ -43,7 +41,7 @@ class HrWikisController < ApplicationController
      if @hr_wiki.destroy
        redirect_to new_hr_wiki_path
      else 
-        redirect_to new_hr_wiki_path,:notice=>"Data could not delete"
+        redirect_to new_hr_wiki_path,:notice=>"Data could not deleted"
      end
   end
 end
