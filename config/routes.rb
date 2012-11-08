@@ -3,7 +3,7 @@ Hrapp::Application.routes.draw do
  resources :imports,:only=>[:new, :create]
  resources :search ,:only=>[:index]
  resources :hr_wikis
- 
+ root :to => 'imports#new'
 end
   # The priority is based upon order of creation:
   # first created -> highest priority.
